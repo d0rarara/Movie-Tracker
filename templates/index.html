@@ -1,0 +1,89 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main>
+
+        <h1>Movie Tracker</h1>
+        <div class="select-box">
+
+            <label for="genreSelect">Select your favorite genre:</label>
+            <select id="genreSelect">
+                <option value="action">Action</option>
+                <option value="comedy">Comedy</option>
+                <option value="drama">Drama</option>
+                <option value="sci-fi">Science Fiction</option>
+                <option value="horror">Horror</option>
+                <option value="adventure">Adventure</option>
+                <option value="animation">Animation</option>
+                <option value="biography">Biography</option>
+                <option value="crime">Crime</option>
+                <option value="family">Family</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="history">History</option>
+                <option value="music">Music</option>
+                <option value="mystery">Mystery</option>
+                <option value="romance">Romance</option>
+                <option value="sci-fi">Sci-Fi</option>
+                <option value="sport">Sport</option>
+                <option value="thriller">Thriller</option>
+                <option value="war">War</option>
+                <option value="western">Western</option>
+                <option value="documentary">Documentary</option>
+            </select>
+            <button onclick="getMovies()">Get Movies</button>
+        </div>
+        <div id="moviesList"></div>
+
+        </main>
+        <script>
+        async function getMovies() {
+            const genre = document.getElementById('genreSelect').value;
+            const response = await fetch('/movies', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ genre: genre })
+            });
+
+            try {
+                const data = await response.json();
+                console.log('Data received from server:', data);
+                displayMovies(data);
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+            }
+        }
+
+        function displayMovies(moviesResponse) {
+            const moviesList = document.getElementById('moviesList');
+            moviesList.innerHTML = '<h2>Movies:</h2>';
+
+            if (!moviesResponse || !moviesResponse.movies || !Array.isArray(moviesResponse.movies)) {
+                moviesList.innerHTML = '<p>No movies found.</p>';
+                return;
+            }
+
+            const ul = document.createElement('ul');
+            moviesResponse.movies.forEach(movie => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>${movie.title}</strong><br>
+                    Release Date: ${movie.release_date}<br>
+                    <hr>
+                `;
+                ul.appendChild(li);
+            });
+            moviesList.appendChild(ul);
+        }
+    </script>
+</body>
+</html>

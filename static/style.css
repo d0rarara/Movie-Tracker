@@ -1,0 +1,60 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    color: #333;
+    width: max-content;
+    margin: 0 auto;
+    font-family: 'Monoton', sans-serif;
+    font-size: 4rem;
+}
+
+.select-box {
+    margin: 2rem auto;
+    padding: 2rem;
+    width: max-content;
+    border: 2px solid black;
+    border-radius: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+select {
+    padding: 8px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#moviesList {
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
