@@ -58,3 +58,9 @@ ul {
 li {
     margin-bottom: 10px;
 }
+
+img {
+    width: 8rem;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}

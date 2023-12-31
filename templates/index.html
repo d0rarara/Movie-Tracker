@@ -78,6 +78,8 @@
                 li.innerHTML = `
                     <strong>${movie.title}</strong><br>
                     Release Date: ${movie.release_date}<br>
+                    <br>Overview: ${movie.overview}<br>
+                    <br><img src="https://image.tmdb.org/t/p/w500/${movie.poster_url}" alt="Poster for ${movie.title}"></img>
                     <hr>
                 `;
                 ul.appendChild(li);
